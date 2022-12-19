@@ -2,9 +2,9 @@
 
 require 'minitest/autorun'
 
-puts <<~HEREDOC
+puts <<~STATEMENT
 
-HEREDOC
+STATEMENT
 
 # Solution
 class Solution
@@ -15,13 +15,15 @@ end
 class SolutionTest < Minitest::Test
   def test_case1
     solution = Solution.new.solution
+    expected = 0
 
-    assert_equal(2, solution)
+    assert_equal(expected, solution)
   end
 
   def test_case2
     solution = Solution.new.solution
+    expected = 0
 
-    assert_equal(2, solution)
+    assert_equal(expected, solution)
   end
 end
