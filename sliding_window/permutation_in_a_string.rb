@@ -10,31 +10,80 @@ HEREDOC
 # Solution
 class Solution
   def solution(string, pattern)
+    hash = pattern.chars.tally
+    left = 0
+    needed_amount = pattern.length
+
+    string.each_char.with_index do |char, right|
+      if hash[char]
+        hash[char] -= 1
+        needed_amount -= 1
+      end
+
+      while needed_amount <= 0 && (right - left + 1) > pattern.length
+        if hash[string[left]]
+          hash[string[left]] += 1
+          needed_amount += 1
+        end
+
+        left += 1
+      end
+
+      return true if (right - left + 1) == pattern.length && hash.values.all?(0)
+    end
+
+    false
+  end
+
+  def educative_solution(string, pattern)
+    hash = pattern.chars.tally
+    left = 0
+    founded_amount = 0
+
+    string.each_char.with_index do |char, right|
+      if hash[char]
+        hash[char] -= 1
+        founded_amount += 1 if hash[char].zero?
+      end
+
+      return true if founded_amount == hash.length
+
+      if right >= (pattern.length - 1)
+        if hash[string[left]]
+          founded_amount -= 1 if hash[string[left]].zero?
+          hash[string[left]] += 1
+        end
+
+        left += 1
+      end
+    end
+
+    false
   end
 end
 
 # Tests
 class SolutionTest < Minitest::Test
   def test_case1
-    solution = Solution.new.solution(%w[o i d b c a f], %w[a b c])
+    solution = Solution.new.solution('oidbcaf', 'abc')
 
     assert_equal(true, solution)
   end
 
   def test_case2
-    solution = Solution.new.solution(%w[o d i c f], %w[d c])
+    solution = Solution.new.solution('odicf', 'dc')
 
     assert_equal(false, solution)
   end
 
   def test_case3
-    solution = Solution.new.solution(%w[b c d x a b c d y], %w[b c d y a b c d x])
+    solution = Solution.new.solution('bcdxabcdy', 'bcdyabcdx')
 
     assert_equal(true, solution)
   end
 
   def test_case4
-    solution = Solution.new.solution(%w[a a a c b], %w[a b c])
+    solution = Solution.new.solution('aaacb', 'abc')
 
     assert_equal(true, solution)
   end
