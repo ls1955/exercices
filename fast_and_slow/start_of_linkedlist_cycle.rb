@@ -4,9 +4,9 @@ require 'minitest/autorun'
 require_relative './listnode'
 
 puts <<~STATEMENT
-  Given the head of a Singly LinkedList,
-  write a function to determine if the
-  LinkedList has a cycle in it or not.
+  Given the head of a Singly LinkedList that
+  contains a cycle, write a function to find
+  the starting node of the cycle.
 STATEMENT
 
 # Solution
@@ -14,15 +14,28 @@ class Solution
   def solution(head)
     slow = head
     fast = head
+    cycle = false
 
     while fast&.nxt
       slow = slow.nxt
       fast = fast.nxt.nxt
 
-      return true if slow == fast
+      if slow == fast
+        cycle = true
+        break
+      end
     end
 
-    false
+    return nil unless cycle
+
+    slow = head
+
+    until slow == fast
+      slow = slow.nxt
+      fast = fast.nxt
+    end
+
+    slow
   end
 end
 
@@ -35,10 +48,11 @@ class SolutionTest < Minitest::Test
       dummy.nxt = ListNode.new(val)
       dummy = dummy.nxt
     end
+    head.nxt.nxt.nxt.nxt.nxt.nxt = head.nxt.nxt
     solution = Solution.new.solution(head)
-    expected = false
+    expected = 3
 
-    assert_equal(expected, solution)
+    assert_equal(expected, solution.val)
   end
 
   def test_case2
@@ -48,11 +62,11 @@ class SolutionTest < Minitest::Test
       dummy.nxt = ListNode.new(val)
       dummy = dummy.nxt
     end
-    head.nxt.nxt.nxt.nxt.nxt.nxt = head.nxt.nxt
+    head.nxt.nxt.nxt.nxt.nxt.nxt = head.nxt.nxt.nxt
     solution = Solution.new.solution(head)
-    expected = true
+    expected = 4
 
-    assert_equal(expected, solution)
+    assert_equal(expected, solution.val)
   end
 
   def test_case3
@@ -62,10 +76,10 @@ class SolutionTest < Minitest::Test
       dummy.nxt = ListNode.new(val)
       dummy = dummy.nxt
     end
-    head.nxt.nxt.nxt.nxt.nxt.nxt = head.nxt.nxt.nxt
+    head.nxt.nxt.nxt.nxt.nxt.nxt = head
     solution = Solution.new.solution(head)
-    expected = true
+    expected = 1
 
-    assert_equal(expected, solution)
+    assert_equal(expected, solution.val)
   end
 end

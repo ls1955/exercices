@@ -4,7 +4,7 @@
 class ListNode
   attr_accessor :val, :nxt
 
-  def initialize(val = 0)
+  def initialize(val = 0, nxt = nil)
     @val = val
     @nxt = nxt
   end
