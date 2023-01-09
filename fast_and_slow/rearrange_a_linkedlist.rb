@@ -47,17 +47,17 @@ end
 # Tests
 class SolutionTest < Minitest::Test
   def test_case1
-    head = LinkedList.for(head_val: 2, vals: [4, 6, 8, 10, 12])
+    head = LinkedList.for(head_val: 2, follow_vals: [4, 6, 8, 10, 12])
     solution = Solution.new.solution(head)
-    expected = LinkedList.for(head_val: 2, vals: [12, 4, 10, 6, 8])
+    expected = LinkedList.for(head_val: 2, follow_vals: [12, 4, 10, 6, 8])
 
     assert_equal(expected.to_s, solution.to_s)
   end
 
   def test_case2
-    head = LinkedList.for(head_val: 2, vals: [4, 6, 8, 10])
+    head = LinkedList.for(head_val: 2, follow_vals: [4, 6, 8, 10])
     solution = Solution.new.solution(head)
-    expected = LinkedList.for(head_val: 2, vals: [10, 4, 8, 6])
+    expected = LinkedList.for(head_val: 2, follow_vals: [10, 4, 8, 6])
 
     assert_equal(expected.to_s, solution.to_s)
   end

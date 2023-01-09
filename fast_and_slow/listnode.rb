@@ -8,4 +8,8 @@ class ListNode
     @val = val
     @nxt = nxt
   end
+
+  def connect(node)
+    nxt = node
+  end
 end

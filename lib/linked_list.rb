@@ -1,18 +1,18 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require_relative './listnode'
 
 # Linked List
 class LinkedList
-  def self.for(head_val: 0, vals: [])
-    new(head_val, vals)
+  def self.for(head_val: 0, follow_vals: [])
+    new(head_val, follow_vals)
   end
 
   attr_accessor :head
 
-  def initialize(head_val, vals)
+  def initialize(head_val, follow_vals)
     @head = ListNode.new(head_val)
-    create_link(vals)
+    create_link(follow_vals)
   end
 
   def create_link(vals)
@@ -30,7 +30,7 @@ class LinkedList
 
     while dummy&.nxt
       string << "#{dummy.val} -> "
-      dummy = dummt.nxt
+      dummy = dummy.nxt
     end
 
     string << "#{dummy.val}"
