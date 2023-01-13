@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require 'minitest/autorun'
 require_relative './../lib/linked_list'
@@ -13,9 +13,9 @@ STATEMENT
 
 # Solution
 class Solution
-  def solution(head)
-    slow = head
-    fast = head
+  def solution(list)
+    slow = list.head
+    fast = list.head
 
     while fast&.nxt
       slow = slow.nxt
@@ -24,23 +24,20 @@ class Solution
 
     curr = slow.nxt
     prev = nil
-
-    while curr
-      curr.nxt, prev, curr = prev, curr, curr.nxt
-    end
-
-    curr = head
+    slow.nxt = nil
+    curr.nxt, prev, curr = prev, curr, curr.nxt while curr
+    curr = list.head
 
     while prev
       curr_nxt_temp = curr.nxt
       prev_nxt_temp = prev.nxt
       curr.nxt = prev
       prev.nxt = curr_nxt_temp
-      curr = prev.nxt.nxt
+      curr = curr_nxt_temp
       prev = prev_nxt_temp
     end
 
-    curr.nxt = nil
+    list
   end
 end
 
@@ -58,6 +55,14 @@ class SolutionTest < Minitest::Test
     head = LinkedList.for(head_val: 2, follow_vals: [4, 6, 8, 10])
     solution = Solution.new.solution(head)
     expected = LinkedList.for(head_val: 2, follow_vals: [10, 4, 8, 6])
+
+    assert_equal(expected.to_s, solution.to_s)
+  end
+
+  def test_case3
+    head = LinkedList.for(head_val: 1, follow_vals: [2, 3, 4, 5, 6])
+    solution = Solution.new.solution(head)
+    expected = LinkedList.for(head_val: 1, follow_vals: [6, 2, 5, 3, 4])
 
     assert_equal(expected.to_s, solution.to_s)
   end

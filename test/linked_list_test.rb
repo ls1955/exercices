@@ -17,4 +17,11 @@ class LinkedListTest < Minitest::Test
 
     assert_equal(expected, head.to_s)
   end
+
+  def test_travel_linked_list
+    list = LinkedList.for(head_val: 0, follow_vals: [1])
+
+    assert_equal(0, list.head.val)
+    assert_equal(1, list.head.nxt.val)
+  end
 end
