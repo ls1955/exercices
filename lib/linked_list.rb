@@ -4,35 +4,18 @@ require_relative './listnode'
 
 # Linked List
 class LinkedList
-  def self.for(head_val: 0, follow_vals: [])
-    new(head_val, follow_vals)
+  def self.with(vals = [])
+    head = ListNode.new(vals[0])
+    create_link!(head, vals[1..])
+    head
   end
 
-  attr_accessor :head
-
-  def initialize(head_val, follow_vals)
-    @head = ListNode.new(head_val)
-    create_link(follow_vals)
-  end
-
-  def create_link(vals)
+  def self.create_link!(head, vals)
     dummy = head
-
     vals.each do |val|
       dummy.nxt = ListNode.new(val)
       dummy = dummy.nxt
     end
-  end
-
-  def to_s
-    dummy = head
-    string = ''
-
-    while dummy&.nxt
-      string << "#{dummy.val} -> "
-      dummy = dummy.nxt
-    end
-
-    string << "#{dummy.val}"
+    head
   end
 end

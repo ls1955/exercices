@@ -3,25 +3,33 @@
 require 'minitest/autorun'
 require_relative './../lib/linked_list'
 
+# Some tests for linked list wrapper
 class LinkedListTest < Minitest::Test
   def test_create_new_linked_list
-    head = LinkedList.new(0, [1, 2, 3, 4])
-    expected = '0 -> 1 -> 2 -> 3 -> 4'
-
-    assert_equal(expected, head.to_s)
-  end
-
-  def test_create_new_linked_list_with_class_method
-    head = LinkedList.for(head_val: 0, follow_vals: [1, 2, 3, 4])
+    head = LinkedList.with([0, 1, 2, 3, 4])
     expected = '0 -> 1 -> 2 -> 3 -> 4'
 
     assert_equal(expected, head.to_s)
   end
 
   def test_travel_linked_list
-    list = LinkedList.for(head_val: 0, follow_vals: [1])
+    head = LinkedList.with([0, 1])
 
-    assert_equal(0, list.head.val)
-    assert_equal(1, list.head.nxt.val)
+    assert_equal(0, head.val)
+    assert_equal(1, head.nxt.val)
+  end
+
+  def test_linked_list_vals
+    head = LinkedList.with([1, 2, 3, 4, 5])
+    vals = [1, 2, 3, 4, 5]
+
+    assert_equal(vals, head.vals)
+  end
+
+  def test_reversed_linked_list_vals
+    head = LinkedList.with([1, 2, 3, 4, 5]).reverse
+    reversed_vals = [5, 4, 3, 2, 1]
+
+    assert_equal(reversed_vals, head.vals)
   end
 end
