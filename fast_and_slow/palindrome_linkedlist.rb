@@ -1,7 +1,8 @@
 # frozen_string_literal: false
 
 require 'minitest/autorun'
-require_relative './listnode'
+require_relative '../lib/linked_list'
+require_relative '../lib/listnode'
 
 puts <<~STATEMENT
   Given the head of a Singly LinkedList,
@@ -32,13 +33,11 @@ class Solution
 
     while slow && fast
       is_palin = false unless slow.val == fast.val
-
       slow = slow.nxt
       fast = fast.nxt
     end
 
-    reverse_list(slow_copy)
-
+    slow_copy.reverse
     is_palin
   end
 
@@ -52,13 +51,7 @@ end
 # Tests
 class SolutionTest < Minitest::Test
   def test_case1
-    vals = [4, 6, 4, 2]
-    head = ListNode.new(2)
-    dummy = head
-    vals.each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
+    head = LinkedList.with([2, 4, 6, 4, 2])
     solution = Solution.new.solution(head)
     expected = true
 
@@ -66,13 +59,7 @@ class SolutionTest < Minitest::Test
   end
 
   def test_case2
-    vals = [4, 6, 4, 2, 2]
-    head = ListNode.new(2)
-    dummy = head
-    vals.each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
+    head = LinkedList.with([2, 4, 6, 4, 2, 2])
     solution = Solution.new.solution(head)
     expected = false
 

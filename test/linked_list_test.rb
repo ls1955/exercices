@@ -5,7 +5,7 @@ require_relative './../lib/linked_list'
 
 # Some tests for linked list wrapper
 class LinkedListTest < Minitest::Test
-  def test_create_new_linked_list
+  def test_linked_list_with_vals
     head = LinkedList.with([0, 1, 2, 3, 4])
     expected = '0 -> 1 -> 2 -> 3 -> 4'
 

@@ -1,7 +1,8 @@
 # frozen_string_literal: false
 
 require 'minitest/autorun'
-require_relative './listnode'
+require_relative '../lib/linked_list'
+require_relative '../lib/listnode'
 
 puts <<~STATEMENT
   Given the head of a Singly LinkedList,
@@ -21,7 +22,6 @@ class Solution
       slow = slow.nxt
       fast = fast.nxt.nxt
     end
-
     slow
   end
 end
@@ -29,13 +29,7 @@ end
 # Tests
 class SolutionTest < Minitest::Test
   def test_case1
-    head = ListNode.new(1)
-    dummy = head
-    (2..5).each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
-
+    head = LinkedList.with([1, 2, 3, 4, 5])
     solution = Solution.new.solution(head)
     expected = 3
 
@@ -43,13 +37,7 @@ class SolutionTest < Minitest::Test
   end
 
   def test_case2
-    head = ListNode.new(1)
-    dummy = head
-    (2..5).each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
-    dummy.nxt = ListNode.new(6)
+    head = LinkedList.with([1, 2, 3, 4, 5, 6])
     solution = Solution.new.solution(head)
     expected = 4
 
@@ -57,16 +45,7 @@ class SolutionTest < Minitest::Test
   end
 
   def test_case3
-    head = ListNode.new(1)
-    dummy = head
-    (2..5).each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
-    (6..7).each do |val|
-      dummy.nxt = ListNode.new(val)
-      dummy = dummy.nxt
-    end
+    head = LinkedList.with([1, 2, 3, 4, 5, 6, 7])
     solution = Solution.new.solution(head)
     expected = 4
 
