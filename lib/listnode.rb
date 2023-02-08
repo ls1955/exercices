@@ -4,17 +4,15 @@
 class ListNode
   attr_accessor :val, :nxt
 
-  def initialize(val = 0)
+  def initialize(val = 0, nxt = nil)
     @val = val
     @nxt = nxt
   end
 
-  def reverse
+  def reverse!
     node = self
     prev = nil
-
     node.nxt, prev, node = prev, node, node.nxt while node
-
     prev
   end
 

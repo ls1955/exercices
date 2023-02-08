@@ -9,7 +9,7 @@ class LinkedList
     create_link!(head, vals[1..])
     head
   end
-  
+
   def self.create_link!(head, vals)
     dummy = head
     vals.each do |val|

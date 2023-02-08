@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: false
-
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/linked_list'
@@ -15,7 +13,7 @@ STATEMENT
 # Solution
 class Solution
   def solution(head)
-    head.reverse
+    head.reverse!
   end
 end
 

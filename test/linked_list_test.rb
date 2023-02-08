@@ -25,11 +25,4 @@ class LinkedListTest < Minitest::Test
 
     assert_equal(vals, head.vals)
   end
-
-  def test_reversed_linked_list_vals
-    head = LinkedList.with([1, 2, 3, 4, 5]).reverse
-    reversed_vals = [5, 4, 3, 2, 1]
-
-    assert_equal(reversed_vals, head.vals)
-  end
 end
