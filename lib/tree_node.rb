@@ -17,4 +17,8 @@ class TreeNode
   def append_right(node)
     @right = node
   end
+
+  def to_s
+    "(#{val})"
+  end
 end
