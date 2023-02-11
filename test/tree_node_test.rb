@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require 'minitest/pride'
+require_relative '../lib/binary_tree'
 require_relative '../lib/tree_node'
 
 class TreeNodeTest < Minitest::Test
@@ -50,5 +51,25 @@ class TreeNodeTest < Minitest::Test
 
     assert_equal(left_node, head.left)
     assert_equal(right_node, head.right)
+  end
+
+  def test_node_level_traversal
+    root = BinaryTree.with([[0], [1, 2], [3, 4, 5, 6]])
+    result = []
+
+    root.each_level_arr { |level| result << level.map(&:val) }
+
+    assert_equal([[0], [1, 2], [3, 4, 5, 6]], result)
+  end
+
+  def test_node_level_traversal_with_index
+    root = BinaryTree.with([[0], [1, 2], [3, 4, 5, 6]])
+    result = []
+
+    root.each_level_arr_with_index do |level, index|
+      result << level.map { |node| node.val * index }
+    end
+
+    assert_equal([[0], [1, 2], [6, 8, 10, 12]], result)
   end
 end
