@@ -40,6 +40,10 @@ class TreeNode
     self
   end
 
+  def leaf?
+    !left && !right
+  end
+
   def level_order_traversal
     result = []
     each_level_arr { |level| result << level.map(&:val) }
