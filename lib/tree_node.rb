@@ -22,6 +22,7 @@ class TreeNode
 
   def append_right(node)
     @right = node
+    self
   end
 
   def each_level_arr
