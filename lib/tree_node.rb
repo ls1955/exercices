@@ -9,6 +9,12 @@ class TreeNode
     @right = right
   end
 
+  def ==(other)
+    return false unless other.is_a?(TreeNode)
+
+    val == other.val && left == other.left && right == other.right
+  end
+
   def append_left(node)
     @left = node
     self

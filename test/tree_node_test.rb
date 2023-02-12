@@ -24,6 +24,28 @@ class TreeNodeTest < Minitest::Test
     assert_equal(right_node, head.right)
   end
 
+  def test_node_equality
+    node = TreeNode.new(0)
+    node2 = TreeNode.new(0)
+    left_node = TreeNode.new(1)
+    right_node = TreeNode.new(2)
+
+    assert_equal(true, node == node2)
+
+    node.append_left(left_node).append_right(right_node)
+
+    assert_equal(false, node == node2)
+    assert_equal(false, node == 1)
+    assert_equal(false, node == 'tuna')
+    assert_equal(false, node == :ham)
+    assert_equal(false, node == [])
+    assert_equal(false, node == {})
+
+    node2.append_left(left_node).append_right(right_node)
+
+    assert_equal(true, node == node2)
+  end
+
   def test_append_left_node
     head = TreeNode.new(2)
     left_node = TreeNode.new(1)

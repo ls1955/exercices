@@ -4,6 +4,7 @@ require_relative 'tree_node'
 
 class BinaryTree
   def self.with(vals)
+    # Able to mark out each level explicitly via nested array
     build(vals.flatten)
   end
 
