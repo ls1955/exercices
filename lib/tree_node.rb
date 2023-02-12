@@ -40,6 +40,14 @@ class TreeNode
     self
   end
 
+  def fetch(val)
+    each_level_arr do |level|
+      level.each do |node|
+        return node if node.val == val
+      end
+    end
+  end
+
   def height
     result = 0
     each_level_arr { result += 1 }

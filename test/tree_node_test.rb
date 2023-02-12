@@ -73,13 +73,21 @@ class TreeNodeTest < Minitest::Test
     assert_equal([[0], [1, 2], [6, 8, 10, 12]], result)
   end
 
-  def test_node_is_a_leaf_node
-    root = BinaryTree.with([[1], [2, 3], [4]])
+  def test_fetch_node_in_tree
+    root = BinaryTree.with([[1], [2, 3], [4, 5, 6, 7]])
+    node1 = root.fetch(1)
+    node2 = root.fetch(2)
+    node7 = root.fetch(7)
 
-    assert_equal(false, root.leaf?)
-    assert_equal(false, root.left.leaf?)
-    assert_equal(true, root.right.leaf?)
-    assert_equal(true, root.left.left.leaf?)
+    assert_equal(1, node1.val)
+    assert_equal(2, node1.left.val)
+    assert_equal(3, node1.right.val)
+    assert_equal(2, node2.val)
+    assert_equal(4, node2.left.val)
+    assert_equal(5, node2.right.val)
+    assert_equal(7, node7.val)
+    assert_nil(node7.left)
+    assert_nil(node7.right)
   end
 
   def test_node_height
@@ -92,5 +100,14 @@ class TreeNodeTest < Minitest::Test
     assert_equal(2, root2.height)
     assert_equal(3, root3.height)
     assert_equal(4, root4.height)
+  end
+
+  def test_node_is_a_leaf_node
+    root = BinaryTree.with([[1], [2, 3], [4]])
+
+    assert_equal(false, root.leaf?)
+    assert_equal(false, root.left.leaf?)
+    assert_equal(true, root.right.leaf?)
+    assert_equal(true, root.left.left.leaf?)
   end
 end
