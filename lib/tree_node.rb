@@ -40,6 +40,12 @@ class TreeNode
     self
   end
 
+  def height
+    result = 0
+    each_level_arr { result += 1 }
+    result
+  end
+
   def leaf?
     !left && !right
   end
