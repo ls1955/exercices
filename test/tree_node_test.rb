@@ -75,6 +75,15 @@ class TreeNodeTest < Minitest::Test
     assert_equal(right_node, head.right)
   end
 
+  def test_node_bfs_each
+    root = BinaryTree.with([[0], [1, 2], [3, 4, 5, 6]])
+    result = []
+
+    root.bfs_each { |node| result << node.val }
+
+    assert_equal([0, 1, 2, 3, 4, 5, 6], result)
+  end
+
   def test_node_level_traversal
     root = BinaryTree.with([[0], [1, 2], [3, 4, 5, 6]])
     result = []

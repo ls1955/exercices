@@ -25,6 +25,20 @@ class TreeNode
     self
   end
 
+  def bfs_each
+    queue = [self]
+
+    until queue.empty?
+      front = queue.shift
+
+      yield front if block_given?
+
+      queue << front.left if front.left
+      queue << front.right if front.right
+    end
+    self
+  end
+
   def each_level_arr
     queue = [self]
 
