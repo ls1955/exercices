@@ -10,13 +10,10 @@ class ArrayReader
   end
 
   def get(index)
-    return Float::INFINITY if index > arr.length
+    return Float::INFINITY if index >= arr.length
 
     arr[index]
   end
 
-  # TODO: Use alias instead to redirect
-  def [](index)
-    get(index)
-  end
+  alias_method :[], :get
 end
