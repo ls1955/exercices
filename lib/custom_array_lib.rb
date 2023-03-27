@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Custom Extended Array Library
 module CustomArrayLib
   # Return nearest element index that is smaller or
   # equals to the target, nil if it does not exist.

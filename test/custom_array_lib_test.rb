@@ -6,10 +6,10 @@ require_relative '../lib/custom_array_lib'
 
 Array.include CustomArrayLib
 
+# Tests for #lbsearch_index and #lbsearch.
+# Although integer is use in the test, it should
+# work with every comparable object theoritically.
 class CustomArrayLibLsearchTest < Minitest::Test
-  # Tests for #lbsearch_index and #lbsearch.
-  # Although integer is use in the test, it should
-  # work with every comparable object theoritically.
   def test_target_exist
     nums = [1, 2, 3, 5, 7, 11]
     target = 7
@@ -88,8 +88,8 @@ class CustomArrayLibLsearchTest < Minitest::Test
   end
 end
 
+# Tests for #rsearch_index and #rsearch
 class CustomArrayLibRsearchTest < Minitest::Test
-  # Tests for #rsearch_index and #rsearch
   def test_target_exist_and_has_greater_num
     nums = [1, 2, 3, 5, 7, 11]
     target = 7
