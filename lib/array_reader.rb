@@ -15,5 +15,5 @@ class ArrayReader
     arr[index]
   end
 
-  alias_method :[], :get
+  alias [] get
 end
