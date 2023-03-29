@@ -20,9 +20,9 @@ module BitonicArrayLib
   def bitonic_bsearch_index(target, **options)
     default = options[:default]
 
-    return bsearch_index { |num| target <=> num } || default unless mid_point = peak_index
+    return bsearch_index { |num| target <=> num } || default unless has_peak?
 
-    index = (0..mid_point).bsearch { |i| target <=> self[i] }
+    index = (0..peak_index).bsearch { |i| target <=> self[i] }
 
     return index if index
 
